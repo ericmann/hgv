@@ -24,9 +24,9 @@ The **master** branch is the latest stable release.  The **develop** branch is w
 
 Submit a pull request at any time, whether an issue has been created or not. It may be helpful to discuss your goals in an issue first, though many things can best be shown with code.
 
-We do ask that the pull request be submitted against the **develop** branch from a feature branch in your fork of the project in GitHub. We ask that you test your code as we will also do our best to code review, test and verify that the pull request is as stable as possible before merging it.
+We do ask that the pull request be submitted against the **develop** branch from a feature branch in your fork of the project in GitHub. We ask that you test your code as we will also do our best to review code, test, and verify that the pull request is as stable as possible before merging it.
 
-We also encourage you to pull down code you see in someone else's pull request, test it and provide your findings in a comment, that's always fun and helpful to the community project.
+We also encourage you to pull down code you see in someone else's pull request, test it, and provide your findings in a comment, that's always fun and helpful to the community project.
 
 Please add the following markdown task lists (checkboxes) to each pull request description.
 
@@ -39,11 +39,11 @@ After reviewing the PR, the reviewer will check their box.  When box boxes are c
 
 ### Hotfixes ###
 
-If a bug fix or code change is deemed important enough that it should be fixed in the latest stable release, the pull request should be targeted at the **master** branch. with the same markdown checkboxes provided above.
+If a bug fix or code change is deemed important enough that it should be fixed in the latest stable release, the pull request should be targeted at the **master** branch, with the same markdown checkboxes provided above.
 
 Once reviewed and tested, it will be merged and a new 'patch' release will be created following the instructions below.
 
-After a release is created, any changes introduced into **master** that bypassed the **develop** branch, should be merged into the **develop** branch.  This can be done in GitHub as a pull request.
+After a release is created, any changes introduced into **master** that bypassed the **develop** branch, should be merged into the **develop** branch. This can be done in GitHub as a pull request.
 
 ## Code Style ##
 
