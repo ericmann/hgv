@@ -1,4 +1,4 @@
-# Mercury Vagrant (HGV) #
+# Mercury Vagrant (HGV) [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 This project is meant to allow people in the WordPress community to run a single Vagrant for developing, debugging, and deploying HHVM based code. We have also added standard PHP to test against so that this project is useful for more standard development as well.
 
@@ -219,3 +219,7 @@ README.md - This README markdown file, the technical steps of how to get up and 
 
 For detailed how to install guides per OS and other debugging information please see the [wiki here on github](https://github.com/wpengine/hgv/wiki).
 
+[travis-image]: https://travis-ci.org/wpengine/hgv.svg?branch=master
+[travis-url]: https://travis-ci.org/wpengine/hgv
+[daviddm-image]: https://david-dm.org/wpengine/hgv.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/wpengine/hgv
