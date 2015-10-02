@@ -98,7 +98,7 @@ function pre() {
 	file_path = path.join( config_directory, file_path );
 
 	// Check to see if our config file exists. If so, only proceed if --force is set.
-	fs.stat( file_path, function( err, stat ) {
+	fs.stat( file_path, function( err ) {
 		if ( err !== null ) {
 			// The file doesn't exist, so start things up.
 			init( enviro, file_path );
@@ -165,8 +165,8 @@ function fix_arrays( array ) {
  */
 function uniq( array ) {
 	var seen = {};
-	return array.filter( function ( item ) {
-		return seen.hasOwnProperty( item ) ? false : (seen[item] = true);
+	return array.filter( function( item ) {
+		return seen.hasOwnProperty( item ) ? false : seen[item] = true;
 	} );
 }
 

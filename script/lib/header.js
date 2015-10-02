@@ -9,9 +9,7 @@
 /**
  * Module dependencies
  */
-var fs = require( 'fs' ),
-	path = require( 'path' ),
-	chalk = require( 'chalk' );
+var chalk = require( 'chalk' );
 
 var fallback = [
 	chalk.gray( ' ------------------------- ' ) + chalk.green( ' ----------------- ' ),
@@ -31,5 +29,3 @@ var fallback = [
 ].join( '\n' );
 
 module.exports = fallback;
-//module.exports = chalk.supportsColor && process.platform !== 'win32' ?
-//	fs.readFileSync( path.join( __dirname, 'header.txt' ), 'utf8' ) : fallback;

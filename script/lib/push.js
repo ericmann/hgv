@@ -31,17 +31,14 @@ var config_directory = path.join( 'hgv_data', 'config', 'sites' );
 function chooser() {
 	process.stdout.write( require( './header' ) );
 
-	// Try to get a list of known environments
-	var configs = [];
-
-	return new Promise( function ( fulfill, reject ) {
-		fs.readdir( config_directory, function ( err, configs ) {
+	return new Promise( function( fulfill ) {
+		fs.readdir( config_directory, function( err, configs ) {
 			if ( err ) {
 				error.no_config();
 			}
 
 			// Get the environment names from the file names
-			var environs = configs.map( function ( item ) {
+			var environs = configs.map( function( item ) {
 				return path.basename( item, '.yml' );
 			} );
 
@@ -53,7 +50,7 @@ function chooser() {
 					message: 'Deploy to which environment?',
 					choices: environs
 				}
-			], function ( result ) {
+			], function( result ) {
 				try {
 					load_config( result.environment ).then( fulfill );
 				} catch ( e ) {
@@ -89,7 +86,7 @@ function load_config( environment ) {
  * @param {Object} config
  */
 function push( config ) {
-	return new Promise( function( fulfill, reject ) {
+	return new Promise( function( fulfill ) {
 		var git = new Git();
 
 		try {

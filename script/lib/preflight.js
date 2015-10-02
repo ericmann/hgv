@@ -15,13 +15,12 @@ var exec = require( 'child_process' ).exec,
 	compareVersion = require( 'compare-version' ),
 	semver = require( 'semver' ),
 	util = require( 'util' ),
-	Promise = require( 'promise' ),
-	error = require( './error' );
+	Promise = require( 'promise' );
 
 /**
  * Module variables
  */
-var messages = [ ''],
+var messages = [''],
 	symbols = {
 		ok : '✓',
 		err: '✖'
@@ -50,8 +49,8 @@ function checkDependency( name, minVersion, command, filter, onError ) {
 		filter = semver.clean;
 	}
 
-	return new Promise( function( fulfill, reject ) {
-		var check = exec( command, function( err, stdout, stderr ) {
+	return new Promise( function( fulfill ) {
+		var check = exec( command, function( err, stdout ) {
 			if ( err ) {
 				process.stdout.write( '  ' + chalk.red( symbols.err ) + '  ' + chalk.gray( util.format( 'No installation of %s is detected!', name ) ) + os.EOL );
 
@@ -83,8 +82,8 @@ function windowsTest() {
 }
 
 function checkGhost() {
-	return new Promise( function( fulfill, reject ) {
-		var check = exec( 'vagrant plugin list', function( err, stdout, stderr ) {
+	return new Promise( function( fulfill ) {
+		var check = exec( 'vagrant plugin list', function( err, stdout ) {
 			if ( err ) {
 				process.stdout.write( '  ' + chalk.red( symbols.err ) + '  ' + chalk.gray( 'Unable to detect any Vagrant plugins.' ) + os.EOL );
 			} else {
