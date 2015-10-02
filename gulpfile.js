@@ -29,6 +29,8 @@ function excludeGulpfile() {
 }
 
 gulp.task( 'static', function() {
+	process.env.TEST = true;
+
 	return gulp.src( 'script/**/*.js' )
 		.pipe( excludeGitignore() )
 		.pipe( excludeGulpfile() )

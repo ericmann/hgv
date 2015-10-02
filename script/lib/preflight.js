@@ -136,23 +136,66 @@ function complete() {
 	process.exit( 0 );
 }
 
+/**
+ * Convert a Git version string into a real version number.
+ *
+ * @param {String} raw Output from `git --version`
+ *
+ * @returns {String}
+ */
+function clean_git_version( raw ) {
+	return semver.clean( raw.trim().replace( /git version/i, '' ).split( '.' ).slice( 0, 3 ).join( '.' ) );
+}
+
+/**
+ * Convert a Vagrant version string into a real version number.
+ *
+ * @param {String} raw Output from `vagrant --version`
+ *
+ * @returns {String}
+ */
+function clean_vagrant_version( raw ) {
+	return semver.clean( raw.replace( /vagrant/i, '' ) );
+}
+
 var init_message = [
 	'',
 	'HGV is scanning your local environment ...',
 	''
 ].join( os.EOL );
 
-process.stdout.write( init_message );
+/**
+ * Actually run the preflight scan
+ */
+function run() {
+	process.stdout.write( init_message );
+
+	/**
+	 * Check system compatibility
+	 */
+	Promise.all(
+		[
+			checkDependency( 'Vagrant',    '1.7.4',  'vagrant -v',           clean_vagrant_version ),
+			checkDependency( 'VirtualBox', '4.3.20', 'VBoxManage --version', function( raw ) { return raw.trim(); }, windowsTest ),
+			checkDependency( 'Node',       '0.12.7', 'node -v' ),
+			checkDependency( 'Git',        '1.9.3',  'git --version',        clean_git_version ),
+			checkGhost()
+		] )
+		.then( complete );
+}
 
 /**
- * Check system compatibility
+ * Make this module testable
  */
-Promise.all(
-	[
-		checkDependency( 'Vagrant',    '1.7.4',  'vagrant -v',           function( raw ) { return semver.clean( raw.replace( /vagrant/i, '' ) ); } ),
-		checkDependency( 'VirtualBox', '4.3.20', 'VBoxManage --version', function( raw ) { return raw.trim(); }, windowsTest ),
-		checkDependency( 'Node',       '0.12.7', 'node -v' ),
-		checkDependency( 'Git',        '1.9.3',  'git --version',        function( raw ) { return semver.clean( raw.trim().replace( /git version/i, '' ).split( '.' ).slice( 0, 3 ).join( '.' ) ); } ),
-		checkGhost()
-	] )
-	.then( complete );
+module.exports = {
+	run: run,
+	_complete: complete,
+	_sanitizers: {
+		vagrant: clean_vagrant_version,
+		git: clean_git_version
+	}
+};
+
+if ( undefined === process.env.TEST || ! process.env.TEST ) {
+	run();
+}
