@@ -9,9 +9,7 @@
 /**
  * Test dependencies
  */
-var proxyquire = require( 'proxyquire' ).noCallThru(),
-	mockSpawn = require( 'mock-spawn' ), spawner = mockSpawn(),
-	assert = require( 'assert' ),
+var assert = require( 'assert' ),
 	preflight = require( '../lib/preflight' );
 
 describe( 'Preflight', function() {
@@ -47,7 +45,7 @@ describe( 'Preflight', function() {
 			assert.equal( expected, sanitizer( input ) );
 		} );
 
-		it ( 'parses Windows git versions', function() {
+		it( 'parses Windows git versions', function() {
 			var input = 'git version 1.9.5.msysgit.0',
 				expected = '1.9.5';
 
@@ -56,7 +54,7 @@ describe( 'Preflight', function() {
 			assert.equal( expected, sanitizer( input ) );
 		} );
 
-		it ( 'parses Mac git versions', function() {
+		it( 'parses Mac git versions', function() {
 			var input = 'git version 2.3.8 (Apple Git 58)',
 				expected = '2.3.8';
 
