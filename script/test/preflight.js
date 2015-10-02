@@ -60,7 +60,7 @@ describe( 'Preflight', function() {
 			var input = 'git version 2.3.8 (Apple Git 58)',
 				expected = '2.3.8';
 
-			var sanitizer = preflight._sanitizers.vagrant;
+			var sanitizer = preflight._sanitizers.git;
 
 			assert.equal( expected, sanitizer( input ) );
 		} );

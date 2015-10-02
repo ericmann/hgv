@@ -144,7 +144,10 @@ function complete() {
  * @returns {String}
  */
 function clean_git_version( raw ) {
-	return semver.clean( raw.trim().replace( /git version/i, '' ).split( '.' ).slice( 0, 3 ).join( '.' ) );
+	var parts = raw.trim().split( ' ' ),
+		version = parts[2];
+
+	return semver.clean( version.split( '.' ).slice( 0, 3 ).join( '.' ) );
 }
 
 /**
