@@ -4,7 +4,8 @@
   "description": "Script Utilities for WPEngine's Hgv",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
   },
   "author": "WPEngine",
   "license": "MIT",
