@@ -31,6 +31,7 @@
     "gulp-nsp": "^0.4.5",
     "gulp-plumber": "^1.0.1",
     "mock-spawn": "^0.2.6",
-    "proxyquire": "^1.7.2"
+    "proxyquire": "^1.7.2",
+    "require-reload": "^0.2.2"
   }
 }
