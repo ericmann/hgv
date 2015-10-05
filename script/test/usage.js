@@ -9,7 +9,7 @@
 /**
  * Test dependencies
  */
-var usage = require( '../lib/usage' ),
+var usage = require( '../lib/components/usage' ),
 	assert = require( 'assert' );
 
 describe( 'Usage', function() {

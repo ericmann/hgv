@@ -9,7 +9,7 @@
 /**
  * Test dependencies
  */
-var Filters = require( '../lib/filters' ),
+var Filters = require( '../lib/components/filters' ),
 	assert = require( 'assert' );
 
 describe( 'Filters', function() {

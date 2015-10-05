@@ -9,7 +9,7 @@
 /**
  * Test dependencies
  */
-var Err = require( '../lib/error' ),
+var Err = require( '../lib/components/error' ),
 	assert = require( 'assert' );
 
 describe( 'Error', function() {

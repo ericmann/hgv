@@ -9,7 +9,7 @@
 /**
  * Test dependencies
  */
-var Symbols = require( '../lib/symbols' ),
+var Symbols = require( '../lib/components/symbols' ),
 	reload = require( 'require-reload' )( require ),
 	assert = require( 'assert' );
 
@@ -30,7 +30,7 @@ describe( 'symbols', function() {
 		Object.defineProperty( process, 'platform', {
 			value: 'win32'
 		} );
-		Symbols = reload( '../lib/symbols' );
+		Symbols = reload( '../lib/components/symbols' );
 		var win_err = Symbols.err,
 			win_ok = Symbols.ok;
 
@@ -38,7 +38,7 @@ describe( 'symbols', function() {
 		Object.defineProperty( process, 'platform', {
 			value: 'darwin'
 		} );
-		Symbols = reload( '../lib/symbols' );
+		Symbols = reload( '../lib/components/symbols' );
 		var mac_err = Symbols.err,
 			mac_ok = Symbols.ok;
 
@@ -50,6 +50,6 @@ describe( 'symbols', function() {
 		Object.defineProperty( process, 'platform', {
 			value: platform
 		} );
-		Symbols = reload( '../lib/symbols' );
+		Symbols = reload( '../lib/components/symbols' );
 	} );
 } );

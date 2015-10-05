@@ -9,7 +9,7 @@
 /**
  * Test dependencies
  */
-var header = require( '../lib/header' ),
+var header = require( '../lib/components/header' ),
 	assert = require( 'assert' );
 
 describe( 'Header', function() {
