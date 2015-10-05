@@ -62,7 +62,7 @@ function checkCLIDependency( name, minVersion, cliCommand, filter, onError ) {
  * @param {String}   name       Name of the dependency to test
  * @param {String}   minVersion Minimum version allowed
  * @param {String}   pluginName Name of the Vagrant plugin
- * @param {Function} [filter]   Optional filter callback
+ * @param {Function} filter     Optional filter callback
  * @param {Function} [onError]  Optional error handler when tool is not installed
  *
  * @returns {Promise}
