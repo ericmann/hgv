@@ -10,7 +10,7 @@
 			"single"
 		],
 		"indent": [
-			0,
+			2,
 			"tab"
 		],
 		"consistent-return": 0,

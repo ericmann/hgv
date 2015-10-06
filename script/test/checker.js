@@ -26,18 +26,18 @@ var myExec = function( command, callback ) {
 	var emitter = new Exec();
 
 	switch ( command ) {
-		case 'no_such_version':
-			callback.apply( null, [true, undefined] );
-			break;
-		case 'outdated_version':
-			callback.apply( null, [false, '1.0.0'] );
-			break;
-		case 'valid_version':
-			callback.apply( null, [false, '2.0.0'] );
-			break;
-		case 'vagrant plugin list':
-			callback.apply( null, returnArray );
-			break;
+	case 'no_such_version':
+		callback.apply( null, [true, undefined] );
+		break;
+	case 'outdated_version':
+		callback.apply( null, [false, '1.0.0'] );
+		break;
+	case 'valid_version':
+		callback.apply( null, [false, '2.0.0'] );
+		break;
+	case 'vagrant plugin list':
+		callback.apply( null, returnArray );
+		break;
 	}
 
 	setTimeout( function() { emitter.emit( 'close' ); }, 10 );
