@@ -11,14 +11,13 @@
  */
 var assert = require( 'chai' ).assert,
 	events = require( 'events' ),
-	util = require( 'util' ),
 	proxyquire = require( 'proxyquire' ).noCallThru();
 
 /**
  * Set up mocks
  */
 function Exec() {}
-Exec.prototype = new events.EventEmitter;
+Exec.prototype = new events.EventEmitter();
 
 // Vagrant return array
 var returnArray = [];
@@ -26,15 +25,15 @@ var returnArray = [];
 var myExec = function( command, callback ) {
 	var emitter = new Exec();
 
-	switch( command ) {
+	switch ( command ) {
 		case 'no_such_version':
-			callback.apply( null, [ true, undefined ] );
+			callback.apply( null, [true, undefined] );
 			break;
 		case 'outdated_version':
-			callback.apply( null, [ false, '1.0.0' ] );
+			callback.apply( null, [false, '1.0.0'] );
 			break;
 		case 'valid_version':
-			callback.apply( null, [ false, '2.0.0' ] );
+			callback.apply( null, [false, '2.0.0'] );
 			break;
 		case 'vagrant plugin list':
 			callback.apply( null, returnArray );
@@ -120,7 +119,7 @@ describe( 'Checker', function() {
 		} );
 	} );
 
-	describe.skip( 'Vagrant', function() {
+	describe( 'Vagrant', function() {
 		it( 'errors if no Vagrant plugins', function( done ) {
 			returnArray = [true, undefined];
 
@@ -143,7 +142,7 @@ describe( 'Checker', function() {
 			} );
 		} );
 
-		it( 'errors if no plugin installation', function() {
+		it( 'errors if no plugin installation', function( done ) {
 			returnArray = [false, ''];
 
 			var message = '',
@@ -166,7 +165,7 @@ describe( 'Checker', function() {
 			} );
 		} );
 
-		it( 'errors if outdated plugin installation', function() {
+		it( 'errors if outdated plugin installation', function( done ) {
 			returnArray = [false, 'vagrant-ghost (0.2.0)'];
 
 			var message = '',
@@ -191,7 +190,7 @@ describe( 'Checker', function() {
 			} );
 		} );
 
-		it( 'succeeds with proper plugin install', function() {
+		it( 'succeeds with proper plugin install', function( done ) {
 			returnArray = [false, 'vagrant-ghost (0.2.1)'];
 
 			var message = '',
