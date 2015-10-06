@@ -10,6 +10,7 @@
  * Test dependencies
  */
 var assert = require( 'chai' ).assert,
+	chalk = require( 'chalk' ),
 	events = require( 'events' ),
 	proxyquire = require( 'proxyquire' ).noCallThru();
 
@@ -63,14 +64,13 @@ describe( 'Checker', function() {
 			Checker.cli( 'Git', '2.0.0', 'no_such_version' ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'No installation of Git is detected!' );
+				assert.include( chalk.stripColor( message.trim() ), 'No installation of Git is detected!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 
 		it( 'errors on outdated installation', function( done ) {
@@ -83,17 +83,13 @@ describe( 'Checker', function() {
 			Checker.cli( 'Git', '2.0.0', 'outdated_version' ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Git' );
-				assert.include( message, 'v1.0.0' );
-				assert.include( message, 'is installed. You need at least' );
-				assert.include( message, 'v2.0.0' );
+				assert.include( chalk.stripColor( message.trim() ), 'Git v1.0.0 is installed. You need at least v2.0.0!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 
 		it( 'succeeds with proper install', function( done ) {
@@ -106,16 +102,13 @@ describe( 'Checker', function() {
 			Checker.cli( 'Git', '2.0.0', 'valid_version' ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Git' );
-				assert.include( message, 'v2.0.0' );
-				assert.include( message, 'looks good!' );
+				assert.include( chalk.stripColor( message.trim() ), 'Git v2.0.0 looks good!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 	} );
 
@@ -132,14 +125,13 @@ describe( 'Checker', function() {
 			Checker.vagrant( 'Vagrant Ghost', '0.2.1', 'vagrant-ghost' ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Unable to detect any Vagrant plugins.' );
+				assert.include( chalk.stripColor( message.trim() ), 'Unable to detect any Vagrant plugins.' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 
 		it( 'errors if no plugin installation', function( done ) {
@@ -154,15 +146,13 @@ describe( 'Checker', function() {
 			Checker.vagrant( 'Vagrant Ghost', '0.2.1', 'vagrant-ghost' ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Vagrant Ghost' );
-				assert.include( message, 'plugin (recommended) was not detected!' );
+				assert.include( chalk.stripColor( message.trim() ), 'The Vagrant Ghost plugin (recommended) was not detected!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 
 		it( 'errors if outdated plugin installation', function( done ) {
@@ -177,17 +167,13 @@ describe( 'Checker', function() {
 			Checker.vagrant( 'Vagrant Ghost', '0.2.1', 'vagrant-ghost', function() { return '0.2.0'; } ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Vagrant Ghost' );
-				assert.include( message, 'v0.2.0' );
-				assert.include( message, 'is installed. You need at least' );
-				assert.include( message, 'v0.2.1' );
+				assert.include( chalk.stripColor( message.trim() ), 'Vagrant Ghost v0.2.0 is installed. You need at least v0.2.1!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 
 		it( 'succeeds with proper plugin install', function( done ) {
@@ -202,16 +188,13 @@ describe( 'Checker', function() {
 			Checker.vagrant( 'Vagrant Ghost', '0.2.1', 'vagrant-ghost', function() { return '0.2.1'; } ).then( function() {
 
 				// Verify
-				assert.notEqual( '', message );
-				assert.include( message, 'Vagrant Ghost' );
-				assert.include( message, 'v0.2.1' );
-				assert.include( message, 'looks good!' );
+				assert.include( chalk.stripColor( message.trim() ), 'Vagrant Ghost v0.2.1 looks good!' );
 
 				// Reset
 				process.stdout.write = stdout;
 
 				done();
-			} );
+			} ).catch( done );
 		} );
 	} );
 } );
